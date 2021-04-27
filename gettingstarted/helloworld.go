@@ -10,6 +10,144 @@ func HandsOnEx() {
 	printEx()
 	fundInt()
 	fundConstants()
+	fundControls()
+	fundArrays()
+}
+
+func fundArrays() {
+	fmt.Println("[-] Arrays, Slices and Maps ")
+	var x [5]float64
+	x[4] = 100
+	x[0] = 90
+	x[1] = 80
+	x[3] = 70
+	x[2] = 50
+	fmt.Println(x)
+
+	var total float64 = 0
+	/*
+		A single _ (underscore) is used to tell the compiler that we don't need this.
+	*/
+	for _, value := range x {
+		total += value
+	}
+
+	fmt.Println("Average : ", total/float64(len(x)))
+
+	fmt.Println("*[-] Slice")
+	slice1 := []int{1, 2, 3}
+	slice2 := append(slice1, 4, 5)
+	slice3 := make([]int, 3)
+	slice4 := make([]int, 3, 9) // len(slice4)=0, cap(slice4)=5
+	copy(slice3, slice2)
+	fmt.Println(slice1, slice2, slice3, slice4)
+
+	fmt.Println("*[-] Maps")
+	/**
+	Map is unordered collection of key-value pairs.
+	- also known as associative array, hash table or a dictionary
+	*/
+	// xMap is a map of "string"s to "int"s.
+	// xMap must be initialized before used. if not,  runtime error: assignment to entry in nil map
+	xMap := make(map[string]int)
+	xMap["key-1"] = 10
+	xMap["key-2"] = 20
+	fmt.Println(xMap)
+	elements := make(map[string]string)
+	elements["H"] = "Hydrogen"
+	elements["He"] = "Helium"
+	elements["Li"] = "Lithium"
+	elements["Be"] = "Beryllium"
+	elements["B"] = "Boron"
+	elements["C"] = "Carbon"
+	elements["N"] = "Nitrogen"
+	elements["O"] = "Oxygen"
+	elements["F"] = "Fluorine"
+	elements["Ne"] = "Neon"
+	fmt.Println(elements)
+	fmt.Println("delete Nitrogen")
+	delete(elements, "N")
+	fmt.Println(elements)
+	/**
+	Technically a map returns the zero value for the value type
+	(which for strings is the empty string).
+	*/
+	fmt.Println("element with key 'UNKNOWN' : ", elements["UNKNOWN"])
+	// Better way to check
+	if name, ok := elements["UNKNOWN"]; ok {
+		fmt.Println(name, ok)
+	} else {
+		fmt.Println("Sorry there is no key with 'UNKNOWN' ")
+	}
+	moreMapEx()
+}
+
+func moreMapEx() {
+	elements := map[string]map[string]string{
+		"H": map[string]string{
+			"name":  "Hydrogen",
+			"state": "gas",
+		},
+		"He": map[string]string{
+			"name":  "Helium",
+			"state": "gas",
+		},
+		"Li": map[string]string{
+			"name":  "Lithium",
+			"state": "solid",
+		},
+		"Be": map[string]string{
+			"name":  "Beryllium",
+			"state": "solid",
+		},
+		"B": map[string]string{
+			"name":  "Boron",
+			"state": "solid",
+		},
+		"C": map[string]string{
+			"name":  "Carbon",
+			"state": "solid",
+		},
+		"N": map[string]string{
+			"name":  "Nitrogen",
+			"state": "gas",
+		},
+		"O": map[string]string{
+			"name":  "Oxygen",
+			"state": "gas",
+		},
+		"F": map[string]string{
+			"name":  "Fluorine",
+			"state": "gas",
+		},
+		"Ne": map[string]string{
+			"name":  "Neon",
+			"state": "gas",
+		},
+	}
+
+	if el, ok := elements["Li"]; ok {
+		fmt.Println(el["name"], el["state"])
+	}
+
+}
+
+func fundControls() {
+	fmt.Println("[-] ControlsStructures ")
+	i := 1
+	fmt.Println("Print 1 to 10 Using For Loop")
+	fmt.Println("Print even / odd Using If / else")
+	var flag string
+	for i <= 10 {
+		if i%2 == 0 {
+			flag = "even"
+		} else {
+			flag = "odd"
+		}
+		fmt.Print(i, flag, "\t")
+		i += 1
+	}
+	fmt.Println()
 }
 
 /**
