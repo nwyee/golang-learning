@@ -12,6 +12,33 @@ func HandsOnEx() {
 	fundConstants()
 	fundControls()
 	fundArrays()
+	funcDefer()
+	funcPanicRecover()
+}
+
+func funcPanicRecover() {
+	fmt.Println("[-] Panic & Recover")
+	defer func() {
+		// recover() return value passed to panic call
+		str := recover()
+		fmt.Println("recover() ", str)
+	}()
+	panic("PANIC")
+}
+
+func funcDefer() {
+	fmt.Println("[-] Defer Function Usage ")
+	fmt.Println("Actually second() func called first place.")
+	defer second()
+	first()
+}
+
+func first() {
+	fmt.Println("1st Sample Method")
+}
+
+func second() {
+	fmt.Println("2nd Sample Method")
 }
 
 func fundArrays() {
